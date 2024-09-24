@@ -1,31 +1,46 @@
 function calcularImc(){
     const botaoCalcular = document.querySelector('#btnCalcular');
-    botaoCalcular.addEventListener('click', function(e) {
+    const inputPeso = document.querySelector('#inputPeso');
+    const inputAltura = document.querySelector('#inputAltura');
 
-        const inputPeso = document.querySelector('#inputPeso')
-        const inputAltura = document.querySelector('#inputAltura')
-
-        const peso = Number(inputPeso.value)
-        const altura = Number(inputAltura.value)
-
-        if(!peso){
-            setResultado('Peso inválido', false);
-            return
+    function aplicarMascaraPeso(e) {
+        let valor = e.target.value.replace(/\D/g, ''); 
+        if (valor.length > 3) {
+            valor = valor.slice(0, 3) + '.' + valor.slice(3); 
         }
-        if(!altura){
-            setResultado('Altura inválido', false);
-            return
-        }
-        
+        e.target.value = valor;
+    }
 
-        const imc = getImc(peso,altura);
-        const nivelImc = getNivelImc(imc)
+    function aplicarMascaraAltura(e) {
+        let valor = e.target.value.replace(/\D/g, ''); 
+        if (valor.length > 1) {
+            valor = valor.slice(0, 1) + '.' + valor.slice(1);
+        }
+        e.target.value = valor;
+    }
+
+    inputPeso.addEventListener('input', aplicarMascaraPeso);
+    inputAltura.addEventListener('input', aplicarMascaraAltura);
+
+    botaoCalcular.addEventListener('click', () => {
+        const peso = parseFloat(inputPeso.value);
+        const altura = parseFloat(inputAltura.value);
+
+        if (!peso || peso < 10 || peso > 600) {
+            setResultado('Peso inválido ou não existente.', false);
+            return;
+        }
+
+        if (!altura || altura < 0.8 || altura > 3.0) {
+            setResultado('Altura inválida ou não existente.', false);
+            return;
+        }
+
+        const imc = getImc(peso, altura);
+        const nivelImc = getNivelImc(imc);
 
         const msg = `SEU IMC: ${imc} (${nivelImc})`;
         setResultado(msg, true);
-        
-
-        
     });
     function getNivelImc(imc){
         const nivel = ['Abaixo do Peso', 'Peso normal','Sobrepeso','Obesidade grau 1','Obesidade grau 2', 'Obesidade grau 3']
@@ -62,13 +77,14 @@ function calcularImc(){
         if (isValid) {
             
             const p = criarP();
+            result.classList.remove('border-danger')
             p.classList.add('p-result');
             p.innerHTML = msg;
             result.appendChild(p);
         } else {
             
             const span = criarSpan();
-            span.classList.add('bg-danger', 'text-white');
+            result.classList.add('border-danger',);
             span.innerHTML = msg;
             result.appendChild(span);
         }
