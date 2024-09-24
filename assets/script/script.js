@@ -1,10 +1,9 @@
-function calcularIMC(){
-    const form = document.querySelector('.form-container');
-    form.addEventListener('submit', function(e){
-        e.preventDefault();
+function calcularImc(){
+    const botaoCalcular = document.querySelector('#btnCalcular');
+    botaoCalcular.addEventListener('click', function(e) {
 
-        const inputPeso = e.target.querySelector('.inputPeso')
-        const inputAltura = e.target.querySelector('.inputAltura')
+        const inputPeso = document.querySelector('#inputPeso')
+        const inputAltura = document.querySelector('#inputAltura')
 
         const peso = Number(inputPeso.value)
         const altura = Number(inputAltura.value)
@@ -17,9 +16,14 @@ function calcularIMC(){
             setResultado('Altura inválido', false);
             return
         }
+        
+
         const imc = getImc(peso,altura);
         const nivelImc = getNivelImc(imc)
-        console.log(imc)
+
+        const msg = `SEU IMC: ${imc} (${nivelImc})`;
+        setResultado(msg, true);
+        
 
         
     });
@@ -32,24 +36,43 @@ function calcularIMC(){
         if(imc >= 24.9)return nivel[2];
         if(imc >= 18.5)return nivel[1];
         if(imc < 18.5)return nivel[0];
+
+        
     }
     
     function getImc(peso,altura){
-        const imc = peso / altura **2;
+        let imc = peso / (altura * altura);
         return imc.toFixed(2);
     }
 
-    function criarP(className){
+    function criarP() {
         const p = document.createElement('p');
-        p.classList.add(className)
+        return p;
     }
 
-    function setResultado(msg, IsValid){
-        const result = document.querySelector('.result');
-        result.innerHTML = `<p> SEU IMC:</p>` 
+    function criarSpan() {
+        const span = document.createElement('span');
+        return span;
     }
 
-    const p = criarP();
-    p.innerHTML = msg;
-    result.appendChild(p)
-}
+    function setResultado(msg, isValid){
+        const result = document.querySelector('#result');
+        result.innerHTML = "" ;
+
+        if (isValid) {
+            
+            const p = criarP();
+            p.classList.add('p-result');
+            p.innerHTML = msg;
+            result.appendChild(p);
+        } else {
+            
+            const span = criarSpan();
+            span.classList.add('bg-danger', 'text-white');
+            span.innerHTML = msg;
+            result.appendChild(span);
+        }
+    }
+}  
+
+calcularImc()

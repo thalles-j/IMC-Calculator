@@ -119,9 +119,14 @@ main{
 .container-result p{
     display: flex;
     justify-content: flex-end;
+    
+}
+.p-result{
     font-weight: 600;
-    margin-right: 2em;
-    font-size: 1.3rem;
+    margin-right: 1.2em;
+    font-size: 1.0rem;
+    overflow: hidden;
+
 }
 .container-result  span{
     text-align: center;
