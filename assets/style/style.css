@@ -31,7 +31,7 @@ main{
     width: 500px;
 }
 .box-form{
-    box-shadow: 0px 0px 8px white;
+    box-shadow: 3px 1px 8px rgba(255, 255, 255, 0.562);
     border: 5px solid var(--white);
     border-radius: 35px;
     background-color: var(--black-20);
@@ -76,6 +76,10 @@ main{
     border-radius: 10px;
     width: 85%;
 }
+.form input:focus{
+    border: 2px solid rgba(80, 80, 80, 0.205)
+    
+}
 .container-btn{
     display: flex;
     justify-content: flex-end;
@@ -92,6 +96,13 @@ main{
     display: flex;
     align-items: center;
 
+
+}
+.btn-style:active {
+    transition: ease-in 250ms;
+    opacity: 0.92;
+    background-color: var(--white);
+    color: var(--black-20);
 }
 .container-result{
     margin:2px;
