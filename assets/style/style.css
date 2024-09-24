@@ -119,7 +119,10 @@ main{
     font-size: 1rem; 
 }
 .p-result{
-    font-size: 1.0rem;
+    margin: 5px;
+    font-size: 9px;
+    overflow: hidden;
+    
 }
 .container-result  span{
     text-align: center; 
@@ -140,9 +143,7 @@ main{
     }
     .container-result{
         width: 100%;
-        height: 1120px;
-        
-        
+        height: 1120px;        
     }
 
 }
