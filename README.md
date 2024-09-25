@@ -2,6 +2,10 @@
 
 Este projeto é uma **Calculadora de IMC (Índice de Massa Corporal)** desenvolvida como parte de um curso de JavaScript. O objetivo deste site é praticar e aprimorar habilidades em JavaScript, HTML e CSS, implementando funcionalidades interativas para o cálculo do IMC com base nos dados inseridos pelo usuário.
 
+
+![image](https://github.com/user-attachments/assets/03abae23-c166-4eec-a9da-6a4af53608bc)
+
+
 ## Funcionalidades
 
 - **Entrada de dados:** O usuário insere seu peso (em kg) e sua altura (em metros) nos campos de entrada do formulário.
